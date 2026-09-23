@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -15,6 +14,20 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
 # Campus-Connect
->>>>>>> 068f877e2f15204934861c9344cc25d7e15e552b
+
+## Run locally
+
+Start the frontend from the project root:
+
+```bash
+npm run dev
+```
+
+Start the backend in a second terminal from the project root:
+
+```bash
+npm run dev:backend
+```
+
+The frontend uses Vite's default port `5173`, and the API runs on port `5000`.

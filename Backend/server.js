@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 const initialEvents = [
   {
@@ -57,6 +58,29 @@ app.delete("/api/events/:eventId", (req, res) => {
       message: "Event Deleted Successfully",
     });
 });
+
+app.post("/api/events", (req, res) => {
+    const newEvent = req.body;
+    initialEvents.push(newEvent);
+    res.json({
+      message: "Event added successfully",
+      event: newEvent,
+    });
+});
+app.put("/api/events/:eventId", (req, res) => {
+  const eventId = parseInt(req.params.eventId, 10);
+    const eventIndex = initialEvents.findIndex(function(event) {
+      return event.id === eventId;
+    });
+    if (eventIndex === -1) {
+      return res.status(404).json({ message: "Event not found" });
+    }
+    initialEvents[eventIndex] = { ...initialEvents[eventIndex], ...req.body };
+    res.json({
+      message: "Event updated successfully",
+      event: initialEvents[eventIndex],
+    });
+  });
 
 
 app.listen(5000, () => {

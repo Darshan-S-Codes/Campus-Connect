@@ -1,6 +1,13 @@
+import { useNavigate } from "react-router";
 import EventSection from "../components/EventSection";
 
-function EventsPage({ events, onDeleteEvent }) {
+function EventsPage({ events, onDeleteEvent, onEditEvent }) {
+    const navigate = useNavigate();
+
+    function handleEditEvent(eventId) {
+        onEditEvent(eventId);
+        navigate("/");
+    }
    
     return (
         <>
@@ -19,6 +26,7 @@ function EventsPage({ events, onDeleteEvent }) {
             <EventSection
                 events={events}
                 onDeleteEvent={onDeleteEvent}
+                onEditEvent={handleEditEvent}
             />
         </>
     );
