@@ -60,18 +60,25 @@ function App() {
 
     function handleEditEvent(eventId){
        const selectedEvent = events.find(function(event){
-           return event.id === eventId;
+           return event._id === eventId;
        });
        setEditingEvent(selectedEvent);
     }
 
     function handleUpdateEvent(updatedEvent){
-        fetch(`http://localhost:5000/api/events/${updatedEvent.id}`, {
+        fetch(`http://localhost:5000/api/events/${updatedEvent._id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(updatedEvent)
+            body: JSON.stringify({
+                title: updatedEvent.title,
+                category: updatedEvent.category,
+                date: updatedEvent.date,
+                time: updatedEvent.time,
+                location: updatedEvent.location,
+                description: updatedEvent.description,
+            })
         }).then((response) =>response.json())
         .then((data)=>{
             console.log(data);
